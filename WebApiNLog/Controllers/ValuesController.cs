@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Configuration;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
@@ -19,9 +20,14 @@ namespace WebApiNLog.Controllers
         // GET api/values
         public virtual IEnumerable<string> Get()
         {
+            List<string> connStrings = new List<string>();
+            foreach (var item in ConfigurationManager.ConnectionStrings)
+            {
+                connStrings.Add(item.ToString());
+            }
 
             var result = this.testClass.Test("hej hej");
-            return new string[] { "value1", "value2" };
+            return connStrings;
         }
 
         // GET api/values/5

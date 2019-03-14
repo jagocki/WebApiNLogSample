@@ -21,7 +21,7 @@ namespace WebApiNLog
                 string.Join(", ", invocation.Arguments.Select(a => (a ?? "").ToString()).ToArray()));
 
             invocation.Proceed();
-
+            
             _logger.Info("Done: result was {0}.", invocation.ReturnValue);
         }
     }
