@@ -190,9 +190,6 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="Areas\HelpPage\HelpPage.css" />
-    <None Include="connectionStrings.xml">
-      <SubType>Designer</SubType>
-    </None>
     <Content Include="Content\bootstrap-grid.css" />
     <Content Include="Content\bootstrap-grid.min.css" />
     <Content Include="Content\bootstrap-reboot.css" />
@@ -221,6 +218,7 @@
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\CollectionModelDescription.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\DisplayTemplates\ApiGroup.cshtml" />
     <Content Include="Areas\HelpPage\Views\Help\Api.cshtml" />
+    <Content Include="connectionString.local.xml" />
     <Content Include="NLog.config">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
@@ -230,10 +228,10 @@
     <Content Include="Content\bootstrap-reboot.css.map" />
     <Content Include="Content\bootstrap-grid.min.css.map" />
     <Content Include="Content\bootstrap-grid.css.map" />
-    <Content Include="connectionStrings.config">
+    <None Include="connectionStrings.debug">
       <SubType>Designer</SubType>
       <TransformOnBuild>true</TransformOnBuild>
-    </Content>
+    </None>
     <None Include="NLog.xsd">
       <SubType>Designer</SubType>
     </None>
@@ -292,9 +290,6 @@
     <Content Include="Scripts\popper.js.map" />
     <Content Include="Scripts\popper-utils.min.js.map" />
     <Content Include="Scripts\popper-utils.js.map" />
-    <None Include="Web.DESKTOP-VEQULAE.config">
-      <SubType>Designer</SubType>
-    </None>
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -354,8 +349,10 @@
   <Target Name="AfterBuild">
   </Target> -->
   <Target Name="BeforeBuild">
-    <TransformXml Source="$(MSBuildProjectDirectory)\..\connectionStrings.xml" Transform="$(MSBuildProjectDirectory)\..\my.connectionStrings.xml" Destination="connectionStrings.config" Condition="'$(Configuration)' == 'Debug' AND Exists('$(MSBuildProjectDirectory)\..\my.connectionStrings.xml')" />
-    <!--<Copy SourceFiles="connectionStrings.xml" DestinationFiles="connectionStrings.config" Condition="'$(Configuration)' == 'Debug' AND !Exists('$(MSBuildProjectDirectory)\my.connectionStrings.xml')" />-->
+    <CallTarget Targets="TransformConnectionStrings;" />
+  </Target>
+  <Target Name="TransformConnectionStrings">
+    <TransformXml Source="$(MSBuildProjectDirectory)\..\connectionStrings.xml" Transform="$(MSBuildProjectDirectory)\connectionString.local.xml" Destination="$(MSBuildProjectDirectory)\connectionStrings.debug" Condition="'$(Configuration)' == 'Debug' AND Exists('$(MSBuildProjectDirectory)\connectionString.local.xml')" />
   </Target>
   <PropertyGroup>
     <PreBuildEvent>

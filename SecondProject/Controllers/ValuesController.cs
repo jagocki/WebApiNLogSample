@@ -6,19 +6,12 @@ using System.Net;
 using System.Net.Http;
 using System.Web.Http;
 
-namespace WebApiNLog.Controllers
+namespace SecondProject.Controllers
 {
     public class ValuesController : ApiController
     {
-        private readonly ITestClass testClass;
-    
-        public ValuesController(ITestClass testClass)
-        {
-            this.testClass = testClass;
-        }
-        
         // GET api/values
-        public virtual IEnumerable<string> Get()
+        public IEnumerable<string> Get()
         {
             List<string> connStrings = new List<string>();
             foreach (var item in ConfigurationManager.ConnectionStrings)
