@@ -354,8 +354,8 @@
   <Target Name="AfterBuild">
   </Target> -->
   <Target Name="BeforeBuild">
-    <TransformXml Source="connectionStrings.xml" Transform="my.connectionStrings.xml" Destination="connectionStrings.config" Condition="'$(Configuration)' == 'Debug' AND Exists('$(MSBuildProjectDirectory)\my.connectionStrings.xml')" />
-    <Copy SourceFiles="connectionStrings.xml" DestinationFiles="connectionStrings.config" Condition="'$(Configuration)' == 'Debug' AND !Exists('$(MSBuildProjectDirectory)\my.connectionStrings.xml')" />
+    <TransformXml Source="$(MSBuildProjectDirectory)\..\connectionStrings.xml" Transform="$(MSBuildProjectDirectory)\..\my.connectionStrings.xml" Destination="connectionStrings.config" Condition="'$(Configuration)' == 'Debug' AND Exists('$(MSBuildProjectDirectory)\..\my.connectionStrings.xml')" />
+    <!--<Copy SourceFiles="connectionStrings.xml" DestinationFiles="connectionStrings.config" Condition="'$(Configuration)' == 'Debug' AND !Exists('$(MSBuildProjectDirectory)\my.connectionStrings.xml')" />-->
   </Target>
   <PropertyGroup>
     <PreBuildEvent>

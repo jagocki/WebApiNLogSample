@@ -3,5 +3,4 @@
       providerName="oldproviderfromorignailconfig" />
   <add name="AWLT2" connectionString="originalconfig2"
     providerName="oldproviderfromorignailconfig2" />
-  <add name="Test3" connectionString="my.local.connectionstring" providerName="machinebased"/>
 </connectionStrings>
