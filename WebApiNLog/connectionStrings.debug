@@ -1,4 +1,6 @@
 ﻿<connectionStrings>
   <add name="databaseConnectionString" connectionString="WebApiNLog_source"
       providerName="old" />
+  <add name="bzzzzz" connectionString="originalconfig"
+    providerName="oldproviderfromorignailconfig" />
 </connectionStrings>

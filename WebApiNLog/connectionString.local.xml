@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8" ?>
 <connectionStrings xmlns:xdt="http://schemas.microsoft.com/XML-Document-Transform">
   <!--the below repeated records are responsible for removing the multiple connection strings from source file, and becouse of NOT operator we are leaving just one node -->
-  <add xdt:Transform="RemoveAll"  xdt:Locator="Condition(not(@name='WebApiNLog'))" />
+  <add xdt:Transform="RemoveAll"  xdt:Locator="Condition(not(@name='WebApiNLog' or @name='bzzzzz'))" />
   <!--we are replacing just the one with proper name, we give it a new name so no code change in the application is required-->
   <add name="databaseConnectionString" 
     xdt:Transform="SetAttributes(name)"  xdt:Locator="Condition(@name='WebApiNLog')"/>
